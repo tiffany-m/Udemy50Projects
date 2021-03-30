@@ -19,12 +19,12 @@ async function getMovies(url) {
 }
 
 function showMovies(movies) {
-  main.innerHTML = '';
+  main.innerHTML = ''; // clear page after search so new movies aren't added to old list
 
-  movies.forEach((movie) => {
-    const { title, poster_path, vote_average, overview } = movie;
+  movies.forEach((movie) => { // looping through movies in search results
+    const { title, poster_path, vote_average, overview } = movie;  // destructuring
 
-    const movieEl = document.createElement('div');
+    const movieEl = document.createElement('div'); // creating div for movies in search results
     movieEl.classList.add('movie');
 
     movieEl.innerHTML = `
@@ -38,7 +38,7 @@ function showMovies(movies) {
           ${overview}
         </div>
         `;
-    main.appendChild(movieEl);
+    main.appendChild(movieEl); // appending to main
   });
 }
 
@@ -52,16 +52,16 @@ function getClassByRate(vote) {
   }
 }
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', (e) => { // listening for a "submit" then (e) is the event to happen
   e.preventDefault();
 
-  const searchTerm = search.value;
+  const searchTerm = search.value; // get value of search
 
-  if (searchTerm && searchTerm !== '') {
-    getMovies(SEARCH_API + searchTerm);
+  if (searchTerm && searchTerm !== '') { // if searchTerm exists and is not equal to an empty string
+    getMovies(SEARCH_API + searchTerm);  // then we will call getMovies and find the SEARCH_API value, which is a url, and add the search term to end
 
-    search.value = '';
+    search.value = '';  // then clear the search value
   } else {
-    window.location.reload();
+    window.location.reload(); // window is reloaded
   }
 });
