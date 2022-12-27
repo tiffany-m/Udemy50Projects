@@ -21,3 +21,4 @@ counters.forEach((counter) => {
 
   updateCounter();
 });
+
